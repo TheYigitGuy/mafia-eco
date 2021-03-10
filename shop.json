@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "name": "P90",
+      "price:": 12000,
+      "description": "Slightly better than the AK-47, although still weak.",
+      "type": "Gun",
+      "power": 2
+    }
+  ],
+  "worker": {
+    "name": "Worker",
+    "price": 7000,
+    "description": "A worker that will work for you.",
+    "type": "Worker"
+  }
+}
