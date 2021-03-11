@@ -132,4 +132,11 @@ module.exports.Economy = class Economy {
 
     return obj;
   }
+
+  async getCompany(userID) {
+    let company = await Schema.findOne({ ownerID: userID });
+    if (!company)
+      throw new ProfileError(`The user ${userID} Does not own a company.`);
+    else return company;
+  }
 };

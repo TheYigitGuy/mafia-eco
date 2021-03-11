@@ -86,7 +86,7 @@ module.exports = async (client, Discord, message) => {
     `${message.author.id}-${command.run.name}`
   );
 
-  if (dbCooldown > time) {
+  if (dbCooldown > time && !owners.includes(message.author.id)) {
     return message.reply(
       `Please wait ${ms(dbCooldown - time, {
         long: true,

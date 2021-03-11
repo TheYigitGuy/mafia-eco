@@ -35,7 +35,10 @@ module.exports = {
       );
 
       return message.channel.send(
-        `You deposited ${amount.replace("all", userProfile.money)}$.\n See your new balance using \`maf.bal\``
+        `You deposited ${amount.replace(
+          "all",
+          userProfile.money
+        )}$.\n See your new balance using \`maf.bal\``
       );
     },
   },

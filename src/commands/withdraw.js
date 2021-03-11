@@ -19,7 +19,11 @@ module.exports = {
           );
           if (success)
             return message.channel.send(
-              `You withdrew ${amount.replace("all", (await new helpers.Economy().viewBalance(message.author.id)).secured)}$.\n See your new balance using \`maf.bal\``
+              `You withdrew ${amount.replace(
+                "all",
+                (await new helpers.Economy().viewBalance(message.author.id))
+                  .secured
+              )}$.\n See your new balance using \`maf.bal\``
             );
         } catch (e) {
           if (e.name == "ProfileError")

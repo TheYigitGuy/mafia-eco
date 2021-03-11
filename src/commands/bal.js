@@ -49,8 +49,6 @@ module.exports = {
     ownerOnly: false,
     permissions: [],
     cooldown: "10s",
-    examples: [""],
-    cooldown: "30s",
   },
   help: {
     desc: "View your balance!",
