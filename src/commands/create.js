@@ -12,7 +12,9 @@ module.exports = {
     async do(client, message, args) {
       const filter = (m) => m.author.id == message.author.id;
 
-      let profile = await  OrganizationModel.findOne({ ownerID: message.author.id })
+      let profile = await OrganizationModel.findOne({
+        ownerID: message.author.id,
+      });
 
       if (profile) return message.reply(`You already have an organization.`);
 
@@ -69,7 +71,7 @@ module.exports = {
     enabled: true,
     permissions: [],
     examples: [""],
-    cooldown: "1 month",
+    cooldown: "10s",
   },
   help: {
     desc: "Create a profile.",
@@ -78,4 +80,3 @@ module.exports = {
     examples: [`create`],
   },
 };
-

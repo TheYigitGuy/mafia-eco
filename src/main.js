@@ -7,7 +7,6 @@ const client = new Discord.Client({
     },
   },
 });
-const mongoose = require("mongoose");
 
 const config = require("../config.json");
 
@@ -30,7 +29,7 @@ client.langs = new enmap({
   name: "Lang",
   fetchAll: false,
   autoFetch: true,
-  cloneLevel: "deep"
+  cloneLevel: "deep",
 });
 
 ["command", "event"].forEach((handler) => {
@@ -39,16 +38,3 @@ client.langs = new enmap({
 });
 
 client.login(config.token);
-
-/*
- * Current Currency:
- * $
- * How I call it:
- * Dollars
- */
-
-process.on("exit", () => {
-  mongoose.connection.close().then(() => {
-    console.log(`MongoDB connection closed.`);
-  });
-});

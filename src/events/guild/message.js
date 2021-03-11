@@ -13,20 +13,14 @@ module.exports = async (client, Discord, message) => {
     .slice(prefix.length)
     .trim()
     .split(/ +/g);
-    await client.langs.ensure(message.guild.id, "en");
-    const lang = client.langs.get(message.guild.id)
   const command =
-    client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
-
-
+    client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
 
   if (!command) return;
 
   if (command.config.ownerOnly && !owners.includes(message.author.id)) {
-    if(lang == "en") return message.reply("This command can only be used by the developers.");
-    else return message.reply(command[lang].config.errors.ownerOn)
+    return message.reply("This command can only be used by the developers.");
   }
-
 
   const validPermissions = [
     "CREATE_INSTANT_INVITE",
@@ -76,11 +70,11 @@ module.exports = async (client, Discord, message) => {
     }
 
     if (invalidPerms.length) {
-      if(lang == "en") return message.reply(
+      return message.reply(
         `Missing permissions: ${invalidPerms
           .map((perm) => `\`${perm}\``)
           .join(", ")}`
-      ); else return message.reply(command[lang].config.errors.permError);
+      );
     }
   }
 
@@ -93,11 +87,11 @@ module.exports = async (client, Discord, message) => {
   );
 
   if (dbCooldown > time) {
-    if(lang=="en") return message.reply(
+    return message.reply(
       `Please wait ${ms(dbCooldown - time, {
         long: true,
       })} before reusing the ${command.run.name} again.`
-    ); else return message.reply(command[lang].config.errors.cooldownE)
+    );
   }
 
   client.cooldowns.set(
@@ -105,6 +99,5 @@ module.exports = async (client, Discord, message) => {
     Date.now() + cooldownAmount
   );
 
-  if (lang== "en")await command.run.do(client, message, args);
-  else await command[lang].run.do(client,message,args)
+  await command.run.do(client, message, args);
 };

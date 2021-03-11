@@ -6,7 +6,16 @@ const organizeSchema = new mongoose.Schema({
   secured: { type: Number },
   workers: { type: Number, default: 1 },
   inventory: { type: Array, default: [] },
-  guns: { type: Array, default: ["AK-47"] },
+  guns: {
+    type: Array,
+    default: [
+      {
+        name: "AK-47",
+        power: 1,
+        price: 0,
+      },
+    ],
+  },
   hq: { type: String, require: true },
   cooldowns: { type: Array, default: [] },
 });
